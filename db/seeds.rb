@@ -5,3 +5,21 @@
 #
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
+require 'faker'
+
+User.create(email: 'user1@example.com', password: 'password1')
+User.create(email: 'user2@example.com', password: 'password2')
+
+# Génération de quelques articles associés à des utilisateurs existants
+users = User.all
+
+5.times do
+  users.each do |user|
+    Post.create(
+      title: Faker::Lorem.sentence,
+      content: Faker::Lorem.paragraph,
+      url: Faker::Internet.url,
+      user_id: user.id
+    )
+  end
+end

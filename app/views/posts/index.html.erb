@@ -1,0 +1,5 @@
+<div class="card-group row mt-3" style="list-style: none;">
+    <% @posts.each do |post| %>
+      <%= render partial: "pages/post", locals: { post: post } %>
+    <% end %>
+</div>
