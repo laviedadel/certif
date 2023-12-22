@@ -1,0 +1,10 @@
+<div class="row d-flex justify-content-center pt-3">
+  <div class="col-12 col-md-6 form form-text">
+    <%= simple_form_for(@post) do |f| %>
+      <%= f.input :title %>
+      <%= f.input :content %>
+      <%= f.input :url %>
+      <%= f.button :submit, class: "btn btn-primary" %>
+    <% end %>
+  </div>
+</div>

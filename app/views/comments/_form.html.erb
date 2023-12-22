@@ -1,0 +1,6 @@
+<div class="pt-3">
+  <%= simple_form_for([@post, @comment]) do |f| %>
+    <%= f.input :content, label: "Your comment:" %>
+    <%= f.button :submit, class: "btn btn-primary" %>
+  <% end %>
+</div>

@@ -1,18 +1,25 @@
-<!DOCTYPE html>
 <html>
   <head>
-    <title>RailsSharePosts</title>
+    <title><%= content_for?(:html_title) ? yield(:html_title) : "NiouzShare" %></title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
+    <%= favicon_link_tag "news_icon.svg" %>
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
-    <%= javascript_importmap_tags %>
+    <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
   </head>
 
-  <body><%= render "shared/navbar" %>
-<%= render "shared/flashes" %>
+  <body>
+    <%= render "shared/navbar" %>
+    <%= render "shared/flashes" %>
 
-    <%= yield %>
+    <% if request.fullpath == root_path %>
+      <%= yield %>
+    <% else %>
+      <div class="container mb-3">
+        <%= yield %>
+      </div>
+    <% end %>
   </body>
 </html>
