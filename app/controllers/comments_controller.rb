@@ -5,7 +5,7 @@ class CommentsController < ApplicationController
     @comment = Comment.new(comment_params)
     @comment.user = current_user
     @comment.post = @post
-    if @comment.save!
+    if @comment.save
       redirect_to post_path(@post), notice: "Comment successfuly created."
     else
       redirect_to post_path(@post), alert: "Failed to create your post."
@@ -17,7 +17,7 @@ class CommentsController < ApplicationController
     @comment.destroy
     redirect_to post_path(@comment.post), notice: "Your comment was successfully deleted."
   end
-  
+
   private
 
   def comment_params
