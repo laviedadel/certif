@@ -6,7 +6,10 @@ class PostsController < ApplicationController
   end
 
   def show
+    @post = Post.find(params[:id])
     @comment = Comment.new(post: @post)
+    @comments = @post.comments.order(created_at: :desc)
+
   end
 
   def new
@@ -22,7 +25,7 @@ class PostsController < ApplicationController
       render :new, status: :unprocessable_entity, alert: "Failed to create your post."
     end
   end
-  
+
   def destroy
     @post.destroy
     redirect_to posts_path, status: :see_other, notice: "Your post was successfully deleted."
