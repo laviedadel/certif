@@ -1,11 +1,35 @@
-<div class="col-lg-4 col-md-6 col-xs-12 mb-3">
-  <%= link_to post_path(post) do %>
-    <div class="card" style="height: 200px">
-        <div class="card-body">
-          <h5 class="card-title"><%= post.title %></h2>
-          <h6 class="card-subtitle mb-2 text-muted"><%= "posted by #{post.user.nickname} - #{time_ago_in_words(post.created_at)} ago" %></h6>
-          <%= post.content %>
+<div class="horizontal-scroll index-page">
+  <% @posts.each do |post| %>
+    <div class="card-container">
+      <%= link_to post_path(post), class: "card-link" do %>
+        <div class="row-card">
+          <div class="card">
+            <div class="wrapper">
+              <div class="header">
+                <ul class="menu-content">
+                  <li>
+                    <a href="#" class="fa fa-bookmark-o"></a>
+                  </li>
+                  <li><a href="#" class="fa fa-heart-o"><span>18</span></a></li>
+                  <li><a href="#" class="fa fa-comment-o"><span>3</span></a></li>
+                </ul>
+              </div>
+              <div class="data">
+                <div class="content">
+                  <span class="author"><%= "posted by #{post.user.nickname} - #{time_ago_in_words(post.created_at)} ago" %></span>
+                  <%= link_to 'Read more', post_path(post), class: "button" %>
+                  <h1 class="title"><%= post.title %></h1>
+                  <p class="text"><%= post.content %></p>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
+      <% end %>
     </div>
   <% end %>
 </div>
+
+
+
+

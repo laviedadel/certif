@@ -1,15 +1,17 @@
-<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.6)), url(https://images.theconversation.com/files/364126/original/file-20201019-19-sxhq4h.jpg?ixlib=rb-1.1.0&rect=0%2C447%2C4514%2C2253&q=45&auto=format&w=1356&h=668&fit=crop);">
+<div class="banner" style="height: 70vh; position: relative; background-image: linear-gradient(rgba(0,0,0,0.3),rgba(0,0,0,0.3)), url('https://dailygeekshow.com/wp-content/uploads/2022/05/une-terre-atmosphere-1024x576.jpg'); background-size: cover; background-position: center;">
   <div class="container">
-    <h1>Share news articles</h1>
-    <p>Share news articles with <strong>like-minded</strong> and <strong>different</strong> people to cross-check your sources!</p>
-    <%= link_to "See posts", posts_path, class: "btn btn-primary" %>
+    <h1 style="color: white;">Actuality </h1>
+    <p style="color: white;"> Share and Connect</p>
   </div>
-</div>
+<%= image_tag("news_icon.svg", style: "position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 150px;") %></div>
+    <%= link_to "See posts", posts_path, class: "btn btn-dark",style: "position: absolute; top: 65%; left: 50%; transform: translate(-50%, -50%);" %>
 <div class="container py-3">
-  <h2 class="text-center">Recent articles:</h2>
-  <div class="card-group row" style="list-style: none;">
+  <h2 class="text-center" style="color: white;">HOT ARTICLE 🔥</h2>
+  <div class="horizontal-scroll">
     <% @posts.each do |post| %>
-      <%= render partial: "post", locals: { post: post } %>
+      <div class="card">
+        <%= render partial: "post", locals: { post: post } %>
+      </div>
     <% end %>
   </div>
 </div>

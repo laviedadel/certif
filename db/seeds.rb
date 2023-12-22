@@ -1,25 +1,48 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
-#   Character.create(name: "Luke", movie: movies.first)
 require 'faker'
 
-User.create(email: 'user1@example.com', password: 'password1')
-User.create(email: 'user2@example.com', password: 'password2')
+puts "Destroying users..."
+User.destroy_all
+puts "Done!"
 
-# Génération de quelques articles associés à des utilisateurs existants
-users = User.all
+puts "Creating users..."
+tim = User.create!(
+  nickname: "tim",
+  email: "tim@tim.tim",
+  password: "secret"
+)
+frodo = User.create!(
+  nickname: "balou",
+  email: "fbaggins@hobbits.com",
+  password: "secret"
+)
 
-5.times do
-  users.each do |user|
-    Post.create(
-      title: Faker::Lorem.sentence,
-      content: Faker::Lorem.paragraph,
-      url: Faker::Internet.url,
-      user_id: user.id
-    )
-  end
+adel = User.create!(
+  nickname: "adel",
+  email: "ade@mail.com",
+  password: "secret"
+)
+puts "Done!"
+
+puts "Creating posts..."
+
+
+10.times do
+  Post.create!(
+    url: Faker::Internet.url,
+    title: Faker::Lorem.sentence(word_count: 3),
+    content: Faker::Lorem.paragraph(sentence_count: 10),
+    # image_url: Faker::LoremFlickr.image,
+    user: [tim, frodo, adel].sample
+  )
 end
+puts "Done!"
+
+puts "Creating comments..."
+Post.all.sample(2).each do |post|
+  Comment.create!(
+    content: "Very good article, thanks for sharing",
+    post: post,
+    user: frodo
+  )
+end
+puts "Done!"
